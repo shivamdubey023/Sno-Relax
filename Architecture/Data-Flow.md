@@ -7,6 +7,35 @@ and AI services, supporting academic evaluation and reproducibility.
 
 ---
 
+# Level-0 DFD (Context Diagram)
+
+This shows the entire SNO-RELAX system as one process.
+
+---
+
+                ┌──────────────┐
+                │     User     │
+                └──────┬───────┘
+                       │
+      Mood, Chat,      │  Responses, Insights,
+      Posts, Reports   │  Summaries, Updates
+                       │
+                ┌──────▼───────┐
+                │              │
+                │  SNO-RELAX   │
+                │   SYSTEM     │
+                │              │
+                └──────┬───────┘
+                       │
+        AI Requests     │  AI Responses
+                       │
+                ┌──────▼───────┐
+                │  AI Service  │
+                │ (Cohere/NLP) │
+                └──────────────┘
+
+---
+
 ## External Entities
 - User
 - AI Service (Cohere or local NLP model)
@@ -114,6 +143,44 @@ To summarize uploaded health reports using AI assistance.
 - AI components are clearly isolated from core system logic.
 - The architecture avoids opaque or autonomous AI decision-making.
 - Each flow can be independently evaluated and reproduced.
+
+---
+# Level-1 DFD
+
+This expands SNO-RELAX into internal processes.
+
+                    ┌──────────────┐
+                    │     User     │
+                    └──────┬───────┘
+                           │
+                           ▼
+                ┌────────────────────┐
+                │   Client Interface │
+                │ (Web / Admin UI)   │
+                └──────┬───────┬─────┘
+                       │       │
+                       │       │
+        Mood Data,     │       │ Chat Messages,
+        Posts, Files   │       │ Report Content
+                       │       │
+                       ▼       ▼
+        ┌────────────────┐   ┌──────────────────┐
+        │  Backend API   │   │   AI Processor   │
+        │ (Auth, Logic)  │◀──│ (Cohere / NLP)   │
+        └──────┬────────┘   └─────────┬────────┘
+               │                          │
+               │                          │
+               ▼                          │
+     ┌──────────────────┐               │
+     │   MongoDB        │               │
+     │ (Users, Moods,   │               │
+     │ Posts, Reports)  │               │
+     └──────────────────┘               │
+               ▲                          │
+               │                          │
+               └──────────Socket.IO───────┘
+                       (Real-time Updates)
+
 
 ---
 
