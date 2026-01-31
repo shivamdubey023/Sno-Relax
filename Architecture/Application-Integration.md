@@ -159,6 +159,50 @@ This integration architecture was chosen to:
 
 ---
 
+                    ┌──────────────┐
+                    │     User     │
+                    └──────┬───────┘
+                           │
+                           ▼
+                ┌────────────────────┐
+                │   Client Interface │
+                │ (Web / Admin UI)   │
+                └──────┬───────┬─────┘
+                       │       │
+                       │       │
+        Mood Data,     │       │ Chat Messages,
+        Posts, Files   │       │ Report Content
+                       │       │
+                       ▼       ▼
+        ┌────────────────┐     ┌──────────────────┐
+        │  Backend API   │     │   AI Processor   │
+        │ (Auth, Logic)  │◀── │ (Cohere / NLP)   │ 
+        └──────┬────────┘      └─────────┬────────┘
+               │                      │
+               │                      │
+               ▼                      │
+     ┌──────────────────┐             │
+     │   MongoDB        │             │
+     │ (Users, Moods,   │             │
+     │ Posts, Reports)  │             │
+     └──────────────────┘             │
+               ▲                      │
+               │                      │
+               └──────────Socket.IO───┘
+                       (Real-time Updates)
+
+---
+
+                ┌──────────────────────┐
+                │   Admin UI (Vercel)  │
+                │ Moderation / Safety  │
+                └───────────▲──────────┘
+                            │
+                     Therapist Notes
+
+
+---
+
 ## Summary
 
 The integration architecture of SNO-RELAX ensures that:
