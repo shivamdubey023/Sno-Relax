@@ -143,7 +143,7 @@ See `REPOSITORIES.md` for detailed descriptions.
   GitHub: https://github.com/shivamdubey023
 
 - **Suryakant Mishra**
-
+  GitHub: https://github.com/mishrasuryakant
 ### 📄 Paper Authors
 - **Shivam Kumar Dubey**
 - **Suryakant Mishra**
